@@ -6,6 +6,7 @@ pipeline:
   build:
     image: golang:1.10
     commands:
+      - apt update && apt install libsystemd-dev -y
       - mkdir -p $GOPATH/src/github/${DRONE_REPO}
       - cp ./*.go $GOPATH/src/github/${DRONE_REPO}/
       - cp -r ./vendor/ $GOPATH/src/github/${DRONE_REPO}/
