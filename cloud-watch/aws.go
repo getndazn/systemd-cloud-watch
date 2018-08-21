@@ -1,15 +1,16 @@
 package cloud_watch
 
 import (
+	"os"
+	"strings"
+
+	lg "github.com/advantageous/go-logback/logging"
 	"github.com/aws/aws-sdk-go/aws"
 	awsCredentials "github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
 	awsSession "github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
-	"os"
-	"strings"
-	lg "github.com/advantageous/go-logback/logging"
 )
 
 var awsLogger = lg.NewSimpleLogger("aws")
