@@ -12,7 +12,13 @@ pipeline:
       - cp -r ./vendor/ $GOPATH/src/github/${DRONE_REPO}/
       - cd $GOPATH/src/github/${DRONE_REPO}
       - env GOOS=linux GOARCH=amd64 go build -o $DRONE_WORKSPACE/${DRONE_REPO_NAME}
-      - file $DRONE_WORKSPACE/systemd-cloud-watch
     when:
       event: push
       branch: master
+
+  github-release:
+      image: plugins/github-release
+      secrets: [ github_token ]
+      files: $DRONE_WORKSPACE/systemd-cloud-watch
+      when:
+        event: tag
