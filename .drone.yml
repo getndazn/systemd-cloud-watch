@@ -16,7 +16,7 @@ pipeline:
   github-release:
       image: plugins/github-release
       secrets: [ github_token ]
-      files: $DRONE_WORKSPACE/systemd-cloud-watch
+      files: systemd-cloud-watch
       when:
         event: tag
 
