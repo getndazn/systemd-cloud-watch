@@ -22,3 +22,4 @@ pipeline:
       files: ./systemd-cloud-watch
       when:
         event: tag
+
