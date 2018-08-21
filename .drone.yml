@@ -3,7 +3,7 @@ workspace:
   path: src/github.com/getndazn/systemd-cloud-watch
 
 pipeline:
-  build-binary:
+  compile-binary:
     image: golang:1.10
     commands:
       - apt update && apt install libsystemd-dev -y
@@ -16,10 +16,10 @@ pipeline:
       event: push
       branch: master
 
-
   github-release:
       image: plugins/github-release
       secrets: [ github_token ]
       files: $DRONE_WORKSPACE/systemd-cloud-watch
       when:
-        event: tag
+        event: push
+        branch: master
