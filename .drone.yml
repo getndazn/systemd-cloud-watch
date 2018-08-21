@@ -12,9 +12,6 @@ pipeline:
       - cp -r ./vendor/ $GOPATH/src/github/${DRONE_REPO}/
       - cd $GOPATH/src/github/${DRONE_REPO}
       - env GOOS=linux GOARCH=amd64 go build -o $DRONE_WORKSPACE/${DRONE_REPO_NAME}
-    when:
-      event: push
-      branch: master
 
   github-release:
       image: plugins/github-release
