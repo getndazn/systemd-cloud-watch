@@ -5,6 +5,7 @@ workspace:
 pipeline:
 
   build-binary:
+
     image: golang:1.10
     commands:
       - apt update && apt install libsystemd-dev -y
