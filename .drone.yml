@@ -19,6 +19,6 @@ pipeline:
   github-release:
       image: plugins/github-release
       secrets: [ github_token ]
-      files: systemd-cloud-watch
+      files: ./systemd-cloud-watch
       when:
         event: tag
