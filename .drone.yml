@@ -1,0 +1,15 @@
+workspace:
+  base: /go
+  path: src/github.com/getndazn/systemd-cloud-watch
+
+pipeline:
+
+  build-binary:
+    image: golang:1.10
+    commands:
+      - apt update && apt install libsystemd-dev -y
+      - go clean -v
+      - go get -v
+      - go build -v
+      - go test -v github.com/getndazn/systemd-cloud-watch/cloud-watch
+      - mv systemd-cloud-watch systemd-cloud-watch_linux
