@@ -5,7 +5,6 @@ workspace:
 pipeline:
   compile-binary:
     image: golang:1.10
-    tags: "${DRONE_TAG##v}"
     commands:
       - apt update && apt install libsystemd-dev -y
       - mkdir -p $GOPATH/src/github/${DRONE_REPO}
@@ -13,11 +12,14 @@ pipeline:
       - cp -r ./vendor/ $GOPATH/src/github/${DRONE_REPO}/
       - cd $GOPATH/src/github/${DRONE_REPO}
       - env GOOS=linux GOARCH=amd64 go build -o $DRONE_WORKSPACE/${DRONE_REPO_NAME}
+    when:
+      event: push
+      branch: master
 
   github-release:
       image: plugins/github-release
       secrets: [ github_token ]
-      files: $DRONE_WORKSPACE/systemd-cloud-watch
+      files: systemd-cloud-watch
       when:
         event: tag
         branch: master
